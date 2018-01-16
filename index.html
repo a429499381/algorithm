@@ -9,7 +9,7 @@
     // 随机生成数字
     var randomdata = function (num) {
         var data = [];
-        for(var i = 0; i < num; i++) {
+        for (var i = 0; i < num; i++) {
             data.push(Math.ceil(Math.random() * num));
         }
         return data
@@ -38,13 +38,35 @@
         return data;
     }
 
-    var dataData = sort( randomdata(100));
+    var sortFast = function (Arrays) {
+        if (!Arrays.length) {
+            return []
+        }
+        var index = Math.floor(Arrays.length / 2);
+        var indexValue = Arrays.splice(index, 1);
+        console.log(Arrays, index, indexValue)
+        var left = [], right = [];
+
+        for (var i = 0; i < Arrays.length; i++) {
+            if (Arrays[i] > indexValue) {
+                right.push(Arrays[i]);
+            } else {
+                left.push(Arrays[i]);
+            }
+        }
+        return  sortFast(left).concat(indexValue, sortFast(right));
+
+    }
+
+    //    var dataData = sort( randomdata(100));
+
+    console.log(sortFast(randomdata(10)));
 
     // 数据去重
     var repetitionData = function () {
         var tempData = [];
         for (var i = 0; i < dataData.length; i++) {
-            if(tempData.indexOf(dataData[i]) === -1) {
+            if (tempData.indexOf(dataData[i]) === -1) {
                 tempData.push(dataData[i]);
             }
         }
@@ -53,7 +75,7 @@
         return tempData;
     }
 
-    repetitionData();
+    //    repetitionData();
 </script>
 </body>
 </html>
