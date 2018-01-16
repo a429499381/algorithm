@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 随机生成数字
+    var randomdata = function (num) {
+        var data = [];
+        for(var i = 0; i < num; i++) {
+            data.push(Math.ceil(Math.random() * num));
+        }
+        return data
+    }
+    // 排序算法  位置交换  交换次数 N * N
+    var sort = function (Arrays) {
+        var data = Arrays;
+        var tempdata;
+
+        function active() {
+            for (var i = 0; i < data.length; i++) {
+                for (var j = 0; j < data.length; j++) {
+                    if (data[j] > data[j + 1]) {
+                        tempdata = data[j + 1];
+                        data[j + 1] = data[j]; // 大的数字向前挪一位
+                        data[j] = tempdata;
+
+                    }
+
+                }
+            }
+        }
+
+        active();
+        console.log(data);
+        return data;
+    }
+
+    var dataData = sort( randomdata(100));
+
+    // 数据去重
+    var repetitionData = function () {
+        var tempData = [];
+        for (var i = 0; i < dataData.length; i++) {
+            if(tempData.indexOf(dataData[i]) === -1) {
+                tempData.push(dataData[i]);
+            }
+        }
+        console.log('去重结果');
+        console.log(tempData);
+        return tempData;
+    }
+
+    repetitionData();
+</script>
+</body>
+</html>
