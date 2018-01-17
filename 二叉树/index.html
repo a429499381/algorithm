@@ -7,7 +7,7 @@
 <body>
 <h1>二叉树</h1>
 <script>
-    function BinaryTree() {
+    var BinaryTree = function () {
         var Nodes = function (key) {
             this.key = key;
             this.left = null;
@@ -33,12 +33,23 @@
         }
 
         this.insert = function (key) {
-            var newNode =new Nodes(key)
+            var newNode = new Nodes(key)
             if (root === null) {
                 root = newNode;
             } else {
                 inserNode(root, newNode)
             }
+        }
+        // 中序遍历
+        var inOrderTraverseNode = function (node, callback) {
+            if (node !== null) {
+                inOrderTraverseNode(node.left, callback)
+                callback(node.key)
+                inOrderTraverseNode(node.right, callback)
+            }
+        }
+        this.inOrderTraverse = function (callback) {
+            inOrderTraverseNode(root, callback)
         }
     }
 
@@ -48,6 +59,11 @@
     nodes.forEach(function (key) {
         binaryTree.insert(key)
     })
+
+    var callback = function (key) {
+        console.log(key);
+    }
+    binaryTree.inOrderTraverse(callback)
 </script>
 </body>
 </html>
