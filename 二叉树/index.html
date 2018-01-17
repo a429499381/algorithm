@@ -51,6 +51,19 @@
         this.inOrderTraverse = function (callback) {
             inOrderTraverseNode(root, callback)
         }
+
+        // 前序遍历
+        var preOrderTraverseNode = function (node, callback) {
+            if (node !== null) {
+                callback(node.key)
+                preOrderTraverseNode(node.left, callback)
+                preOrderTraverseNode(node.right, callback)
+
+            }
+        }
+        this.preOrderTraverse = function (callback) {
+            preOrderTraverseNode(root, callback)
+        }
     }
 
     var nodes = [8, 3, 10, 1, 6, 14, 4, 7, 13]
@@ -64,6 +77,7 @@
         console.log(key);
     }
     binaryTree.inOrderTraverse(callback)
+    binaryTree.preOrderTraverse(callback)
 </script>
 </body>
 </html>
