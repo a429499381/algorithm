@@ -91,7 +91,9 @@
                 while (node && node.right !== null) {
                     node = node.right
                 }
-                callback(node.key)
+                if (!node.right) {
+                    callback(node.key)
+                }
             }
         }
         this.min = function (callback) {
@@ -126,17 +128,26 @@
             }
 
             if (key < node.key) {
-                return removeNode(node.left, key)
+                node.left =  removeNode(node.left, key)
+                return node
             } else if (key > node.key) {
-                return removeNode(node.right, key)
+                node.right = removeNode(node.right, key)
+                return node
             } else {
                 if (!node.left && !node.right) {
                     console.log(node.key + '已删除')
                     node = null;
+                    return node
                 }
 
-                if(!node.left && node.right) {
-
+                if(!node.left) {
+                    console.log(node.key + '已删除')
+                    node = node.right
+                    return node;
+                } else if (!node.right) {
+                    console.log(node.key + '已删除')
+                    node = node.left
+                    return node;
                 }
 
             }
@@ -149,7 +160,7 @@
         }
     }
 
-    var nodes = [8, 3, 10, 1, 6, 14, 4, 7, 13]
+    var nodes = [8, 3, 10, 1, 6, 14, 4, 7, 13,27]
     var binaryTree = new BinaryTree()
 
     nodes.forEach(function (key) {
@@ -168,10 +179,10 @@
     binaryTree.inOrderTraverse(callback)
     binaryTree.preOrderTraverse(callback)
     binaryTree.postOrderTraverse(callback)
-//    binaryTree.min(mincallback)
-//    binaryTree.max(maxcallback)
+    binaryTree.min(mincallback)
+    binaryTree.max(maxcallback)
     binaryTree.search(14)
-    binaryTree.remove(1)
+    binaryTree.remove(10)
 </script>
 </body>
 </html>
