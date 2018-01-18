@@ -111,10 +111,20 @@
                 return searchNode(node.left, key)
             } else if (key > node.key) {
                 return searchNode(node.right, key)
+            } else {
+                console.log('已找到', node.key)
             }
         }
         this.search = function (key) {
             return searchNode(root, key)
+        }
+
+        // removeNode
+        var removeNode = function (key) {
+
+        }
+        this.remove = function (key) {
+            removeNode(root, key)
         }
     }
 
@@ -137,8 +147,9 @@
     binaryTree.inOrderTraverse(callback)
     binaryTree.preOrderTraverse(callback)
     binaryTree.postOrderTraverse(callback)
-    binaryTree.min(mincallback)
-    binaryTree.max(maxcallback)
+//    binaryTree.min(mincallback)
+//    binaryTree.max(maxcallback)
+    binaryTree.search(14)
 </script>
 </body>
 </html>
