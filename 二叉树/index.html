@@ -120,7 +120,28 @@
         }
 
         // removeNode
-        var removeNode = function (key) {
+        var removeNode = function (node, key) {
+            if (node === null) {
+                return false
+            }
+
+            if (key < node.key) {
+                return removeNode(node.left, key)
+            } else if (key > node.key) {
+                return removeNode(node.right, key)
+            } else {
+                if (!node.left && !node.right) {
+                    console.log(node.key + '已删除')
+                    node = null;
+                }
+
+                if(!node.left && node.right) {
+
+                }
+
+            }
+
+
 
         }
         this.remove = function (key) {
@@ -150,6 +171,7 @@
 //    binaryTree.min(mincallback)
 //    binaryTree.max(maxcallback)
     binaryTree.search(14)
+    binaryTree.remove(1)
 </script>
 </body>
 </html>
