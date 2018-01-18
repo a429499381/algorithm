@@ -40,6 +40,7 @@
                 inserNode(root, newNode)
             }
         }
+
         // 中序遍历
         var inOrderTraverseNode = function (node, callback) {
             if (node !== null) {
@@ -75,6 +76,46 @@
         this.postOrderTraverse = function (callback) {
             postOrderTraverseNode(root, callback)
         }
+
+        // 查找
+        var minNode = function (node, callback) {
+            if (node !== null) {
+                minNode(node.left, callback)
+                if (!node.left) {
+                    callback(node.key)
+                }
+            }
+        }
+        var maxNode = function (node, callback) {
+            if (node) {
+                while (node && node.right !== null) {
+                    node = node.right
+                }
+                callback(node.key)
+            }
+        }
+        this.min = function (callback) {
+            minNode(root, callback)
+        }
+        this.max = function (callback) {
+            maxNode(root, callback)
+        }
+
+        // 搜索
+        var searchNode = function (node, key) {
+            if (node === null) {
+                return false
+            }
+
+            if (key < node.key) {
+                return searchNode(node.left, key)
+            } else if (key > node.key) {
+                return searchNode(node.right, key)
+            }
+        }
+        this.search = function (key) {
+            return searchNode(root, key)
+        }
     }
 
     var nodes = [8, 3, 10, 1, 6, 14, 4, 7, 13]
@@ -87,9 +128,17 @@
     var callback = function (key) {
         console.log(key);
     }
+    var mincallback = function (key) {
+        console.log('最小值是 ', key)
+    }
+    var maxcallback = function (key) {
+        console.log('最大值是 ', key)
+    }
     binaryTree.inOrderTraverse(callback)
     binaryTree.preOrderTraverse(callback)
     binaryTree.postOrderTraverse(callback)
+    binaryTree.min(mincallback)
+    binaryTree.max(maxcallback)
 </script>
 </body>
 </html>

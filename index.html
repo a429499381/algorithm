@@ -42,6 +42,7 @@
         if (!Arrays.length) {
             return []
         }
+        var data = [];
         var index = Math.floor(Arrays.length / 2);
         var indexValue = Arrays.splice(index, 1);
         console.log(Arrays, index, indexValue)
@@ -54,7 +55,7 @@
                 left.push(Arrays[i]);
             }
         }
-        return  sortFast(left).concat(indexValue, sortFast(right));
+        return sortFast(left).concat(indexValue, sortFast(right));
 
     }
 
