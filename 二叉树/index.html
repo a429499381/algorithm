@@ -126,10 +126,10 @@
             }
 
             if (key < node.key) {
-                node.left =  removeNode(node.left, key)
+                removeNode(node.left, key)
                 return node
             } else if (key > node.key) {
-                node.right = removeNode(node.right, key)
+               removeNode(node.right, key)
                 return node
             } else {
                 if (!node.left && !node.right) {
@@ -146,7 +146,27 @@
                     console.log(node.key + '已删除')
                     node = node.left
                     return node;
+                } else {
+                    if (root.key > node.key) {
+                        while (node.right) {
+                            node.key = node.right.key
+                            node = node.right
+                        }
+                        node.right = null;
+                        console.log('节点已删除', root);
+                        return true
+
+                    } else {
+                        while (node.left) {
+                            node.key = node.left.key
+                            node = node.left
+                        }
+                        node.left = null;
+                        console.log('节点已删除', root);
+                        return true
+                    }
                 }
+
 
             }
 
@@ -158,7 +178,7 @@
         }
     }
 
-    var nodes = [8, 3, 10, 1, 6, 14, 4, 7, 13]
+    var nodes = [8, 3, 10, 1, 11, 12, 9, 6, 14, 4, 7, 13]
     var binaryTree = new BinaryTree()
 
     nodes.forEach(function (key) {
