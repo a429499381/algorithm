@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 数据去重 https://zhuanlan.zhihu.com/p/25545584
+    var repetitionData = function (data) {
+        var tempData = [];
+        for (var i = 0; i < data.length; i++) {
+            if (tempData.indexOf(data[i]) === -1) {
+                tempData.push(data[i]);
+            }
+        }
+        return tempData;
+    }
+
+    var datas = [7,1,2,3,3,2,4]
+
+    var result = repetitionData(datas)
+    console.log(result)
+</script>
+</body>
+</html>
