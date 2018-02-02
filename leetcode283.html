@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>将 所有0 移动结尾</title>
+</head>
+<body>
+<script>
+    // 将所有0移动结尾 https://leetcode.com/problems/move-zeroes/description/
+    var zero = function (data) {
+        var max = data.length
+        for (var i = 0; i < max; i++) {
+            if (data[i] === 0) {
+                data.push(data[i])
+                data.splice(i, 1)
+                max--
+                i--
+            }
+
+        }
+        return data
+    }
+
+    var data = [0, 1, 0, 3 ,12]
+    data = [0,0,1]
+    var result = zero(data)
+    console.log(result)
+</script>
+</body>
+</html>
