@@ -6,22 +6,31 @@
 </head>
 <body>
 <script>
-    var myNum = 0
-    // 随机生成数字
-    function rnd( seed ){
-        seed = ( seed * 9301 + 49297 ) % 233280; //为何使用这三个数?
-        return seed / ( 233280.0 );
-    };
+    var rand = (function(){
+        var today = new Date();
+        var seed = today.getTime();
+        function rnd(){
+            seed = ( seed * 9301 + 49297 ) % 233280;
+            return seed / ( 233280.0 );
+        };
+        return function rand(number){
+            // return Math.ceil(rnd(seed) * number);
+            return Math.ceil(rnd() * number);
+        };
+    })();
+    myNum = (rand(5));
 
-    function rand(number){
-        today = new Date();
-        seed = today.getTime();
-        return Math.ceil( rnd( seed ) * number );
-    };
 
-    myNum=(rand(10000000));
+    var cs = (function () {
+        for (var i = 0; i < 100; i++) {
+            setTimeout(function () {
+                myNum=(rand(1000000000000));
+                console.log(myNum)
 
-    console.log(myNum)
+            },100)
+
+        }
+    })()
 
 </script>
 </body>
