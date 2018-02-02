@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>二分查找升级版</title>
+</head>
+<body>
+<script>
+    // 根据二分查找法 写出的 O(1) 复杂度的算法
+
+    var binarySearch = function (array, target) {
+        var l = 0, r = array.length - 1
+        var mid = 0
+        var count = 0
+        var result = {}
+        var targetN = 1; // 与 target 的倍数
+        var targetLock = true
+
+        var isEqual = function () {
+            if (array[mid] === target) {
+                return true
+            }
+        }
+
+        if (target < array[0] || target > array[r]) {
+            console.log("目标值不在有序列表中")
+            return -2
+        }
+
+
+        function active() {
+            var tempMid = 0
+            mid = Math.floor((l + r) / 2)
+
+            // 死循环异常
+            if (count < 999) {
+                count++
+            } else {
+                result.mid = mid
+                result.l = l
+                result.r = r
+                result.target = target
+                console.log('循环异常')
+                console.log(result)
+                return -1
+            }
+
+
+            if (array[mid] / target > 1 && targetLock === true) { // 目标倍数
+                tempMid = mid
+                targetN = array[mid] / target
+                mid = Math.ceil(mid / targetN)
+                r = mid
+                l = tempMid
+                targetLock = false
+
+            }
+
+            if (array[mid] / target < 1 && targetLock === true) { // 目标倍数
+                tempMid = mid
+                targetN =  target / array[mid]
+                mid = Math.ceil(mid * targetN)
+                r = mid
+                l = tempMid
+                targetLock = false
+
+            }
+
+
+            if(isEqual()){
+                return  true
+            } // 检查是否相等
+
+            if (array[mid] > target) {
+                if(isEqual(mid--)){
+                    // 检查是否相等
+                    return  true
+                } else {
+                    r = mid
+                    active()
+                }
+
+            } else if (array[mid] < target) {
+
+                if(isEqual(mid++)){
+                    // 检查是否相等
+                    return  true
+                } else {
+                    l = mid
+                    active()
+                }
+            }
+
+
+        }
+
+        active()
+
+        result.count = count
+        result.target = target
+        return result
+    }
+
+    // 生成有序 数组
+    var arraydata = function () {
+        var data = []
+        for (var i = 0; i < 1000000; i++) {
+            data.push(i)
+        }
+        return data
+    }
+
+    var data = arraydata()
+    for (var i = 0; i < 100; i++) {
+        var result = binarySearch(data, Math.floor(Math.random() * 1000000))
+        console.log(result)
+    }
+
+</script>
+</body>
+</html>
