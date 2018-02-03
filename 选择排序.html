@@ -7,6 +7,7 @@
 <body>
 <script>
     // 选择排序 https://zhuanlan.zhihu.com/p/26133896
+    //  假设第一个元素为最小， 每次循环 n-1 比第一个元素小就调换位置，  时间复杂度O((n-1)n)
     var swap = function swap(array,a,b) {
         var temp=array[a]
         array[a]=array[b]
