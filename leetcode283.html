@@ -24,23 +24,24 @@
 
     var moveZeroes = function(data) {
         var max = data.length
-        var temp = 0
+        var k = 0, temp
         for (var i = 0; i < max; i++) {
-            for (var j = 0; j < max; j++) {
-                if (data[j] === 0) {
-                    data[j] = data[j + 1]
-                    data[j + 1] = 0
+                if (data[i] !== 0) {
+                    temp = data[k]
+                    data[k] = data[i]
+                    data[i] = temp
+                    k++
 
                 }
-            }
         }
         return data
     };
 
 
     var data = [0, 1, 0, 3 ,12]
+    var data1 = [0, 1, 0, 3 ,12]
     var result = zero(data)
-    var result1 = moveZeroes(data)
+    var result1 = moveZeroes(data1)
     console.log(result)
     console.log(result1)
 </script>
