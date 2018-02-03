@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>合并排序</title>
+</head>
+<body>
+<script>
+    // 合并排序 https://zhuanlan.zhihu.com/p/26133896
+    var count = 0;
+    var swap = function swap(array,a,b) {
+        var temp=array[a]
+        array[a]=array[b]
+        array[b]=temp
+    }
+    var merge = function (array) {
+        var max = array.length
+        var i
+
+        for (i = 0; i < max; i++) {
+            count++
+            if (array[i] < array[i + 1]) {
+                swap(array, i, i + 1)
+                i++
+            }
+        }
+
+        return array
+    }
+    var sort1 = function (array) {
+        if (array.length < 2) {
+            return array
+        }
+        var result = []
+        var mid = 0
+        var l = []
+        var r = []
+
+        mid = Math.floor(array.length / 2)
+        l = array.slice(0, mid)
+        r = array.slice(mid)
+        count++
+
+        return merge(sort1(l)).concat(merge(sort1(r)))
+
+    }
+
+
+
+    var data = [1, 2, 4, 5, 6, 22, 22, 5, 6, 7, 8]
+    var result = sort1(data)
+    console.log(count)
+    console.log(result)
+</script>
+</body>
+</html>
