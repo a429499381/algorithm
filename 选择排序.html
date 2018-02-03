@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选择排序</title>
+</head>
+<body>
+<script>
+    // 选择排序 https://zhuanlan.zhihu.com/p/26133896
+    var swap = function swap(array,a,b) {
+        var temp=array[a]
+        array[a]=array[b]
+        array[b]=temp
+    }
+
+    var sort1 = function (Arrays) {
+        var min, i, j, temp
+        for (i = 0; i < Arrays.length; i++) {
+            min = i
+            for (j = i + 1; j < Arrays.length; j++) {
+                if (Arrays[j] < Arrays[min]) {
+                    min = j
+                }
+            }
+
+            if (min !== i) {
+               swap(Arrays, i, min)
+            }
+        }
+
+        return Arrays
+
+    }
+
+
+
+    var data = [1, 2, 4, 5, 6, 22, 22, 5, 6, 7, 8]
+    var result = sort1(data)
+    console.log(result)
+</script>
+</body>
+</html>
