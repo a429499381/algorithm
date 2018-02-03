@@ -8,12 +8,16 @@
 <script>
     // 排序算法  位置交换 冒泡排序
     var sort = function (Arrays) {
-        var data = Arrays;
-        var tempdata;
+        var data = Arrays
+        var tempdata
+        var count
 
         (function active() {
+            count = 0
             for (var i = 0; i < data.length; i++) {
+                count++
                 for (var j = 0; j < data.length; j++) {
+                    count++
                     if (data[j] > data[j + 1]) {
                         tempdata = data[j + 1];
                         data[j + 1] = data[j]; // 大的数字向前挪一位
@@ -25,6 +29,7 @@
             }
         })()
 
+        console.log(count)
         return data;
     }
 
