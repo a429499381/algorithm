@@ -8,24 +8,32 @@
 <script>
     // remove element
     var remove = function (arry) {
-        var i = 0
+        var i = 0, bool
+        var k = 0
         var num = {}
-        for (var j = 0; j < arry.length; j++) {
-            num[j] = 0
+        for (var j = 0; j < arry.length + k; j++) {
+            bool = num[arry[j]]
+            if (bool === undefined) {
+                num[arry[j]] = 0
+            } else {
+                num[arry[j]]++
+            }
         }
 
-        for (i = 0; i < arry.length; i++) {
-            num[i]++
-            if (arry[i] === arry[i + 1] && num[i] === 2) {
+        for (i = 0; i <= arry.length; i++) {
+
+
+            if (arry[i] === arry[i + 1] && num[arry[i]] >= 2) {
+                num[arry[i]] -= 1
                 arry.splice(i--, 1)
             }
         }
         return arry
     }
 
-    var data = [1,1,1,1,2,2,3,4,4,5,5,5,5,5,6,6,8,8,8,9,9,9]
-    var data1 = [1,1,1,2,2,3,3,3]
-    var result = remove(data1)
+    var data = [1, 1, 1, 1, 2, 2, 3, 4, 4, 5, 5, 5, 5, 5, 6, 6, 8, 8, 8, 9, 9, 9]
+    var data1 = [1, 1, 1, 2, 2,2,3, 3, 3, 3,3]
+    var result = remove(data)
     console.log(result)
 </script>
 </body>
