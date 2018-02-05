@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>有序数组去重</title>
+</head>
+<body>
+<script>
+    // remove element
+    var remove = function (arry) {
+        var i = 0, K = 0
+        for (i = 0; i < arry.length; i++) {
+            if (arry[i] === arry[i + 1]) {
+                arry.splice(i--, 1)
+            }
+        }
+        return arry
+    }
+
+    var data = [1,1,1,2,3,4,4,5,6,6,8,8,8,9,9,9]
+    var result = remove(data, 3)
+    console.log(result)
+</script>
+</body>
+</html>
