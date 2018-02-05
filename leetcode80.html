@@ -13,15 +13,10 @@
         var num = {}
         for (var j = 0; j < arry.length + k; j++) {
             bool = num[arry[j]]
-            if (bool === undefined) {
-                num[arry[j]] = 0
-            } else {
-                num[arry[j]]++
-            }
+            bool === undefined ? num[arry[j]] = 0 :  num[arry[j]]++
         }
 
         for (i = 0; i <= arry.length; i++) {
-
 
             if (arry[i] === arry[i + 1] && num[arry[i]] >= 2) {
                 num[arry[i]] -= 1
