@@ -14,7 +14,7 @@
         num[1] = 0
         num[2] = 0
 
-        var resultConat = function (num,vaule) {
+        var resultConat = function (num, vaule) {
             var data = []
             for (var i = 0; i < num; i++) {
                 data.push(vaule)
@@ -25,12 +25,41 @@
             num[arry[i]]++
         }
 
-        return  resultConat(num[0], 0).concat(resultConat(num[1],1)).concat(resultConat(num[2], 2))
+        return resultConat(num[0], 0).concat(resultConat(num[1], 1)).concat(resultConat(num[2], 2))
 
     }
 
+    var threeFast = function (arry) {
+        var swap = function swap(array, a, b) {
+            var temp = array[a]
+            array[a] = array[b]
+            array[b] = temp
+        }
+
+
+        var zero = -1
+        var two = arry.length
+        for (var i = 0; i < two;) {
+            if (arry[i] === 1) {
+                i++
+            } else if (arry[i] === 2) {
+                two -= 1
+                swap(arry, arry[i], arry[two])
+            } else {
+                if (arry[i] !== 0) {
+                    console.log('程序出错')
+                }
+                zero += 1
+                swap(arry, arry[zero], arry[i])
+                i += 1
+            }
+        }
+
+        return arry
+    }
+
     var data = [0, 0, 1, 2, 0, 2, 0, 1, 2, 2, 1, 1, 1]
-    var result = remove(data)
+    var result = threeFast(data)
     console.log(result)
 </script>
 </body>
