@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sort Colors</title>
+</head>
+<body>
+<script>
+    // remove element
+    var remove = function (arry) {
+        var result = []
+        var num = {}
+        num[0] = 0
+        num[1] = 0
+        num[2] = 0
+
+        var resultConat = function (num,vaule) {
+            var data = []
+            for (var i = 0; i < num; i++) {
+                data.push(vaule)
+            }
+            return data
+        }
+        for (var i = 0; i < arry.length; i++) {
+            num[arry[i]]++
+        }
+
+        return  resultConat(num[0], 0).concat(resultConat(num[1],1)).concat(resultConat(num[2], 2))
+
+    }
+
+    var data = [0, 0, 1, 2, 0, 2, 0, 1, 2, 2, 1, 1, 1]
+    var result = remove(data)
+    console.log(result)
+</script>
+</body>
+</html>
