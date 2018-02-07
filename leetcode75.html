@@ -29,14 +29,13 @@
 
     }
 
+    var swap = function swap(array, a, b) {
+        var temp = array[a]
+        array[a] = array[b]
+        array[b] = temp
+    }
     var threeFast = function (arry) {
-        var swap = function swap(array, a, b) {
-            var temp = array[a]
-            array[a] = array[b]
-            array[b] = temp
-        }
-
-
+        var temp
         var zero = -1
         var two = arry.length
         for (var i = 0; i < two;) {
@@ -44,13 +43,13 @@
                 i++
             } else if (arry[i] === 2) {
                 two -= 1
-                swap(arry, arry[i], arry[two])
+                swap(arry, i, two)
             } else {
                 if (arry[i] !== 0) {
                     console.log('程序出错')
                 }
                 zero += 1
-                swap(arry, arry[zero], arry[i])
+                swap(arry, zero, i)
                 i += 1
             }
         }
