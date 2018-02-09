@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>有序数组找出两个数字和等于target</title>
+</head>
+<body>
+<script>
+    var count = 0
+
+    var swap = function swap(array, a, b) {
+        var temp = array[a]
+        array[a] = array[b]
+        array[b] = temp
+    }
+
+    var twoSum = function (arry, target) {
+        var result = []
+        for (var i = 0; i < arry.length ; i++) {
+           for (var j = i +1; j < arry.length; j++) {
+               count++
+               if (target - arry[i] === arry[j]) {
+                    result.push(i, j)
+               }
+           }
+        }
+        if (result.length) {
+            return result
+
+        } else {
+            console.log('无法找到匹配之和')
+            return -1
+        }
+
+    }
+
+    var data = [1,2,3,4,5,6,7,8,9]
+    var result = twoSum(data, 12)
+    console.log(count)
+    console.log(result)
+</script>
+</body>
+</html>

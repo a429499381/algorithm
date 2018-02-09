@@ -74,13 +74,14 @@
         var zero = -1
         var two = arry.length
         for (var i = 0; i < two;) {
-            count++
             if (arry[i] === stand) {
                 i++
             } else if (arry[i] > stand) {
+                count++
                 two -= 1
                 swap(arry, i, two)
             } else {
+                count++
                 zero += 1
                 swap(arry, zero, i)
                 i += 1
