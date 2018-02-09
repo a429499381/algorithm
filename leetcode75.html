@@ -6,6 +6,7 @@
 </head>
 <body>
 <script>
+    var count = 0
     // remove element
     var remove = function (arry) {
         var result = []
@@ -57,8 +58,47 @@
         return arry
     }
 
+    var threeFast1 = function (arry) {
+        if (arry.length < 3) {
+            return arry
+        }
+        if (count > 999) {
+            console.log('循环超过上线')
+            return -2
+        }
+
+        var stand = arry[0]
+        var zero = -1
+        var two = arry.length
+        for (var i = 0; i < two;) {
+            if (arry[i] === stand) {
+                i++
+            } else if (arry[i] > 2) {
+                two -= 1
+                swap(arry, i, two)
+            } else {
+                zero += 1
+                swap(arry, zero, i)
+                i += 1
+            }
+        }
+
+        if (zero) {
+            zero = arry.slice(0,zero)
+            stand = arry.slice(zero + 1, two - 1)
+            two = arry.slice(two)
+            return threeFast1(zero).concat(arry.slice(stand), threeFast1(two))
+        } else {
+            zero = arry.slice(0, two -1)
+            return threeFast1(arry.slice(zero)).concat(threeFast1(two))
+        }
+    }
+
+
+    var data1 = [1, 3, 1, 1, 1, 2, 2, 3, 4, 4, 5, 5, 5, 5, 5, 6, 6, 8, 8, 8, 9, 9, 9]
+
     var data = [0, 0, 1, 2, 0, 2, 0, 1, 2, 2, 1, 1, 1]
-    var result = threeFast(data)
+    var result = threeFast1(data1)
     console.log(result)
 </script>
 </body>
