@@ -39,9 +39,13 @@
         var l = 0, r = arry.length - 1, mid
 
         function active() {
+            count++
             mid = Math.floor((l + r) / 2)
 
             if (l === mid) {
+                if (target === arry[mid]) {
+                    result = mid
+                }
                 return result
             }
 
@@ -55,6 +59,7 @@
                 active()
             }
         }
+
         active()
 
         return result
@@ -74,8 +79,41 @@
         return result
     }
 
-    var data = [1, 2, 3, 4, 5, 5, 5, 5, 5, 6, 7, 8, 9, 9, 10, 10, 11, 11]
-    var result = twoSum1(data, 20)
+    var twoSum2 = function (arry, target) {
+        var max = target
+        var maxArry, temp
+        var resultIndex
+        var result  = []
+
+        if (max > arry.length) {
+            max = arry.length
+        } else {
+            while (arry[max] < target) {
+                count++
+                if (count > 999) {
+                    console.log('数据溢出')
+                }
+                max++
+            }
+        }
+
+
+        maxArry = arry.slice(0, max)
+
+        for (var i = 0; i < maxArry.length; i++) {
+            count++
+            temp = target - maxArry[i]
+            resultIndex = binarySearch(maxArry, temp)
+            if (resultIndex > -1 && i !== resultIndex) {
+                result.push(i, resultIndex)
+            }
+        }
+
+        return result
+    }
+
+    var data = [1, 2, 3, 4, 5, 5, 5, 5, 5, 6, 7, 8, 9, 9, 10, 10, 11, 11,12,13,14,25,34,34,34,35,35,36,37,376]
+    var result = twoSum1(data, 7)
     console.log(count)
     console.log(result)
 </script>
