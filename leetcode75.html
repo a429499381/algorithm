@@ -68,12 +68,16 @@
         }
 
         var stand = arry[0]
+        var minResult
+        var standResult
+        var maxResult
         var zero = -1
         var two = arry.length
         for (var i = 0; i < two;) {
+            count++
             if (arry[i] === stand) {
                 i++
-            } else if (arry[i] > 2) {
+            } else if (arry[i] > stand) {
                 two -= 1
                 swap(arry, i, two)
             } else {
@@ -83,15 +87,18 @@
             }
         }
 
-        if (zero) {
-            zero = arry.slice(0,zero)
-            stand = arry.slice(zero + 1, two - 1)
-            two = arry.slice(two)
-            return threeFast1(zero).concat(arry.slice(stand), threeFast1(two))
+        if (zero < 0) {
+            minResult =  arry.slice(0,two)
+            maxResult = arry.slice(two)
+            return  minResult.concat(threeFast1(maxResult))
         } else {
-            zero = arry.slice(0, two -1)
-            return threeFast1(arry.slice(zero)).concat(threeFast1(two))
+            minResult = arry.slice(0, zero)
+            standResult = arry.slice(zero, two)
+            maxResult = arry.slice(two)
+            return threeFast1(minResult).concat(standResult, threeFast1(maxResult))
         }
+
+
     }
 
 
@@ -99,6 +106,7 @@
 
     var data = [0, 0, 1, 2, 0, 2, 0, 1, 2, 2, 1, 1, 1]
     var result = threeFast1(data1)
+    console.log(count)
     console.log(result)
 </script>
 </body>
