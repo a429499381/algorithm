@@ -34,7 +34,43 @@
 
     }
 
-    var data = [1,2,3,4,5,6,7,8,9]
+    var binarySearch = function (arry, target) {
+        if (arry.length < 2) {
+            return 'over'
+        }
+        var mid = Math.ceil(arry / 2)
+
+        for (var i = 0; i < arry.length; i++) {
+            if (target === arry[mid]) {
+                binaryIndex += mid
+                return binaryIndex
+            } else if (target > arry[mid]) {
+                binaryIndex += mid
+                binarySearch(arry.slice(mid), target)
+            } else if (target < arry[mid]) {
+                binaryIndex += mid
+                binarySearch(arry.slice(0, mid), target)
+            }
+        }
+    }
+
+    var twoSum1 = function (arry, target) {
+        var temp, binaryResult, binaryIndex = 0
+        var result = []
+        for (var i = 0; i < arry.length; i++) {
+            temp = target - arry[i]
+            if (temp < arry.length) {
+                if (temp === arry[temp]) {
+                    result.push(i, temp)
+                } else if (temp > arry[temp]) {
+                    // 使用二分查找法
+                   binaryResult = binarySearch(arry.slice(temp), temp)
+                }
+            }
+        }
+    }
+
+    var data = [1,2,3,4,5,5,5,5,5,6,7,8,9,9,10,10,11,11]
     var result = twoSum(data, 12)
     console.log(count)
     console.log(result)
