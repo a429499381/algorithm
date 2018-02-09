@@ -41,6 +41,10 @@
         function active() {
             mid = Math.floor((l + r) / 2)
 
+            if (l === mid) {
+                return result
+            }
+
             if (target === arry[mid]) {
                 result = mid
             } else if (target > arry[mid]) {
@@ -63,7 +67,7 @@
         for (var i = 0; i < arry.length; i++) {
             temp = target - arry[i]
             binaryIndex = binarySearch(arry, temp)
-            if (binaryIndex) {
+            if (binaryIndex >= 0 && i !== binaryIndex) {
                 result.push(i, binaryIndex)
             }
         }
@@ -71,7 +75,7 @@
     }
 
     var data = [1, 2, 3, 4, 5, 5, 5, 5, 5, 6, 7, 8, 9, 9, 10, 10, 11, 11]
-    var result = twoSum1(data, 12)
+    var result = twoSum1(data, 20)
     console.log(count)
     console.log(result)
 </script>
