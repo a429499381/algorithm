@@ -16,46 +16,42 @@
 
     var reverse = function (str) {
         // 定义 临时字符串 一定要赋空值
-        var result,lStr = '', rStr = ''
+        var res = {}
+        var result = ''
+        res.reg = /o|e/
+        res.regL = false
+        res.regR = false
+        res.lVaule = ''
+        res.rVaule = ''
         var l = 0
         var r = str.length - 1
-        var reg = /o|e/
-        var regL = {}, regR = {}
 
         function active() {
-            // 是否为元音字母
-            regL.value = reg.test(str[l])
-            regR.value = reg.test(str[r])
-            // 如果 左右索引想等  说明循环即将结束， 拼接字符串
-            if (l === r) {
-                result = lStr + str[l] + rStr
-            } else if (regL.value || regR.value){
-                regL.value ? regL.index = l : ''
-                regR.value ? regR.index = r : ''
-
-                if (regL.index && regR.index) {
-                    lStr += str[r]
-                    rStr += str[l]
-                }
-                // 如果不想等， 最右变字符串保证在lStr中，最左字符串保存在rStr中 l++ j-- 继续循环
-
-                l++
-                r--
-                active()
-            } else {
-                lStr += str[l]
-                rStr += str[r]
-                active()
+            // 如果 l + 1 === r 拼接字符串 并退出。
+            if (l + 1 >= r) {
+                return result = res.lVaule + str[l] + str[l + 1] + res.rVaule
             }
 
+            // 是否为元音字符串
+            res.regL = res.reg.test(str[l])
+            res.regR = res.reg.test(str[r])
+            if (res.regL && res.regR) { // 同时为元音字符串相互赋值，并l++ r--
+                res.lVaule += str[r--]
+                res.rVaule += str[l++]
+            }
+            // 如果当前下标不是元音字符，添加值进入 左或右  并 l++ 或 r-- 循环
+            res.regL === false ? res.lVaule += str[l++] : ''
+            res.regR === false ? res.rVaule += str[r--] : ''
+            active()
         }
+
         active()
         return result
     }
 
     var string = 'hello' // holle
     var string1 = 'leetcode' // leotcede
-    var result = reverse(string)
+    var result = reverse(string1)
     console.log(count)
     console.log(result)
 </script>
