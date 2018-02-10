@@ -19,23 +19,31 @@
         var j = str.length - 1
         var i = 0
         var str = str.toLowerCase()
+        var reg = /\w+/
+        var regValue
 
-        function active() {
+        function active() {  // 数据循环处理部分
 
-            if (str[i] === ',' || str[i] === ';' || str[i] === ' ') {
+            //  是否为 字母和数字 不是 i++
+            regValue = reg.test(str[i])
+            if (!regValue) {
                 i++
                 active()
             }
-            if (str[j] === ',' || str[i] === ';' || str[j] === ' ') {
+            //  是否为 字母和数字 不是 j--
+            regValue = reg.test(str[j])
+            if (!regValue) {
                 j--
                 active()
             }
 
+            // 重要有一个 字母和数字不想等 就返回 false
             if (str[i] !== str[j]) {
                 return strLocak = false
             }
 
 
+            // 如果每次都想等， 比较完所有字母和数字，就返回 true
             if (str[i] === str[j]) {
                 if (i === j) {
                     return strLocak = true
@@ -46,6 +54,7 @@
                 }
             }
         }
+
         active()
 
         return strLocak
