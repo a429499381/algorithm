@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>字符串是否为回文串</title>
+</head>
+<body>
+<script>
+    var count = 0
+
+    var swap = function swap(array, a, b) {
+        var temp = array[a]
+        array[a] = array[b]
+        array[b] = temp
+    }
+
+    var plalindrome = function (str) {
+        var strLocak = true
+        var j = str.length - 1
+        var i = 0
+        var str = str.toLowerCase()
+
+        function active() {
+
+            if (str[i] === ',' || str[i] === ';' || str[i] === ' ') {
+                i++
+                active()
+            }
+            if (str[j] === ',' || str[i] === ';' || str[j] === ' ') {
+                j--
+                active()
+            }
+
+            if (str[i] !== str[j]) {
+                return strLocak = false
+            }
+
+
+            if (str[i] === str[j]) {
+                if (i === j) {
+                    return strLocak = true
+                } else {
+                    i++
+                    j--
+                    active()
+                }
+            }
+        }
+        active()
+
+        return strLocak
+    }
+
+    // reace a car 不是回文串
+    var string = 'A man, a plan, a canal; Panama'
+
+    var result = plalindrome(string)
+    console.log(count)
+    console.log(result)
+</script>
+</body>
+</html>
