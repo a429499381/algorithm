@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>将字符串反转</title>
+</head>
+<body>
+<script>
+    var count = 0
+
+    var swap = function swap(array, a, b) {
+        var temp = array[a]
+        array[a] = array[b]
+        array[b] = temp
+    }
+
+    var reverse = function (str) {
+        // 定义 临时字符串 一定要赋空值
+        var result,lStr = '', rStr = ''
+        var l = 0
+        var r = str.length - 1
+
+        function active() {
+            // 如果 左右索引想等  说明循环即将结束， 拼接字符串
+            if (l === r) {
+                result = lStr + str[l] + rStr
+            } else {
+                // 如果不想等， 最右变字符串保证在lStr中，最左字符串保存在rStr中 l++ j-- 继续循环
+                lStr += str[r]
+                rStr += str[l]
+                l++
+                r--
+               active()
+            }
+
+        }
+        active()
+        return result
+    }
+
+    var string = 'hello' // olleh
+    var result = reverse(string)
+    console.log(count)
+    console.log(result)
+</script>
+</body>
+</html>
