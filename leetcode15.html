@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>1 two sum</title>
+    <title>3 3Sum</title>
     <!--给一个整型数组，寻找其中所有不同的三元组（a,b,c) 相加等于0-->
 </head>
 <body>
@@ -14,8 +14,33 @@
         array[a] = array[b]
         array[b] = temp
     }
+    //  查找是否在对象中
+    var findObjBoolean = function (obj, tar) {
+        for (var item in obj) {
+            count++
+            if (obj.hasOwnProperty(item) && item * 1 === tar) { //filter,只输出man的私有属性
+                return true
+            }
+        }
+        return false
+    }
 
     var Sum3 =function (arry) {
+        var result = [], temp
+        var findObj = {}
+
+        for (var j = 0; j < arry.length; j++) {
+            findObj[arry[j]] = j
+            for (var k = j + 1; k < arry.length; k++) {
+                temp = 0 - arry[j] - arry[k]
+
+                if (findObjBoolean(findObj, temp) && j !== findObj[temp] && k !== findObj[temp] ) {
+                    result.push([j, k, findObj[temp]])
+                }
+            }
+        }
+
+        return result
 
     }
 
