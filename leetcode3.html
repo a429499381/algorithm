@@ -15,10 +15,33 @@
     }
 
     var noRepetitionString = function (str) {
+        var l = 0
+        var r = str.length - 2
+        var temp = ''
+        var result = ''
 
+        for (var i = 0; i < str.length; i++) {
+            // 如果字符串不再 临时字符串中， 添加进临时字符串
+            if (temp.indexOf(str[i]) === -1) {
+                temp += str[i]
+
+            } else {
+                // 如果字符串重复了， 比较temp 与 result 谁最长，保留最长的字符串
+                if (result.length < temp.length) {
+                    result = temp
+                }
+                // 如果重复字符串相邻 只取一个进入 临时字符串 中
+                if (str[i] === str[i - 1]) {
+                    temp = str[i]
+                }
+                temp = str[i - 1] + str[i]
+            }
+        }
+
+        return result
     }
 
-    var str1 = 'abcabcbb'   // abc
+    var str1 = 'abcabcbbabcdefggklef'   // abc
     var str2 = 'bbbbb'      // b
     var str3 = 'pwwkew'     // wke
 
