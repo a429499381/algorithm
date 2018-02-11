@@ -20,11 +20,37 @@
             return -1
         }
 
+        var findObjBoolean = function (obj, tar) {
+            for (var i in obj) {
+                if (obj.hasOwnProperty(i) && obj[i] === tar) { //filter,只输出man的私有属性
+                    return true
+                }
+            }
+            return false
+        }
+        var findobj = {}
+        var result, temp
+
+        // 创建查找表
+        for (var j = 0; j < arry.length; j++) {
+            findobj[arry[j]] = j
+        }
+
+        for (var i = 0; i < arry.length; i++) {
+            temp = target - arry[i]
+            if (findObjBoolean(findobj, temp)) {
+                return result = [i, findobj[temp]]
+            }
+            findobj[arry[i]] = i
+        }
+
+        return result
     }
 
-    var data = [2,7,11,15]
-    var target = 9
-    var result = twoSum(data, target)
+    var data = [2, 7, 11, 15]
+    var data1 = [2, 12, 7, 16, 17, 11, 15]
+    var target = 23
+    var result = towsum(data1, target)
     console.log(count)
     console.log(result)
 </script>
