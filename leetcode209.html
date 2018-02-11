@@ -17,7 +17,7 @@
     var findMinArry = function (arry, target) {
         var i = 0, j = 1
         var resTemp = arry[i] + arry[j]
-        var result = arry.length
+        var result = arry.length + 1
 
         function active() {
             for (i; i < j;) {
@@ -30,7 +30,16 @@
                     i++
                     active()
                 } else {
-                    resTemp += arry[++j]
+                    j++
+                    // 如果 j 大于等于总长度， 就可以退出了
+                    if (j >= arry.length) {
+                        // 如果不是初始值说明有解，返回有解长度个数， 无解 返回 -1
+                        if (result < arry.length + 1) {
+                            return result
+                        }
+                        return result = -1
+                    }
+                    resTemp += arry[j]
                     active()
                 }
             }
@@ -43,7 +52,7 @@
     }
 
     var data = [2, 3, 1, 2, 4, 3]
-    var s = 7
+    var s = 9
     var result = findMinArry(data, s)
     console.log(count)
     console.log(result)
