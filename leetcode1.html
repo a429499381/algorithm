@@ -20,9 +20,11 @@
             return -1
         }
 
+        //  查找是否在对象中
         var findObjBoolean = function (obj, tar) {
-            for (var i in obj) {
-                if (obj.hasOwnProperty(i) && obj[i] === tar) { //filter,只输出man的私有属性
+            for (var item in obj) {
+                count++
+                if (obj.hasOwnProperty(item) && item * 1  === tar) { //filter,只输出man的私有属性
                     return true
                 }
             }
@@ -37,11 +39,12 @@
         }
 
         for (var i = 0; i < arry.length; i++) {
+            count++
             temp = target - arry[i]
-            if (findObjBoolean(findobj, temp)) {
+            // 只有在查找表中 且下表不是当前 i 才为正常解法
+            if (findObjBoolean(findobj, temp) && i !== findobj[temp]) {
                 return result = [i, findobj[temp]]
             }
-            findobj[arry[i]] = i
         }
 
         return result
@@ -49,8 +52,8 @@
 
     var data = [2, 7, 11, 15]
     var data1 = [2, 12, 7, 16, 17, 11, 15]
-    var target = 23
-    var result = towsum(data1, target)
+    var target = 9
+    var result = towsum(data, target)
     console.log(count)
     console.log(result)
 </script>
