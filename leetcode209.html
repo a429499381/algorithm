@@ -15,12 +15,36 @@
     }
 
     var findMinArry = function (arry, target) {
+        var i = 0, j = 1
+        var resTemp = arry[i] + arry[j]
+        var result = arry.length
+
+        function active() {
+            for (i; i < j;) {
+
+                if (resTemp >= target) {
+                    if ((j - i + 1) < result) {
+                        result = j - i + 1
+                    }
+                    resTemp -= arry[i]
+                    i++
+                    active()
+                } else {
+                    resTemp += arry[++j]
+                    active()
+                }
+            }
+            return result
+        }
+
+        active()
+        return result
 
     }
 
-    var data = [2,3,1,2,4,3]
+    var data = [2, 3, 1, 2, 4, 3]
     var s = 7
-    var result = findMinArry(string1)
+    var result = findMinArry(data, s)
     console.log(count)
     console.log(result)
 </script>
