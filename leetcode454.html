@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>454 4Sum II</title>
-    <!--给四个整型数组，寻找有多少个i，j, k , z 组合相加等于0， 数据规模0-500-->
+    <title>3 3Sum</title>
+    <!--给一个整型数组，寻找其中所有不同的三元组（a,b,c) 相加等于0-->
 </head>
 <body>
 <script>
@@ -29,14 +29,9 @@
         var result = [], temp
         var findObj = {}
 
-        for (var i = 0; i < arry.length; i++) {
-            findObj[arry[i]] = i
-            for (var z = 0; z < arry.length; z++) {
-                findObj[arry[i] + arry[z]] = [i, z]
-            }
-        }
-
         for (var j = 0; j < arry.length; j++) {
+            findObj[arry[j]] = j
+
             for (var k = j + 1; k < arry.length; k++) {
                 temp = 0 - arry[j] - arry[k]
 
