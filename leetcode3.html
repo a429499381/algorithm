@@ -33,8 +33,11 @@
                 // 如果重复字符串相邻 只取一个进入 临时字符串 中
                 if (str[i] === str[i - 1]) {
                     temp = str[i]
+
+                } else {
+                    temp = str[i - 1] + str[i]
+
                 }
-                temp = str[i - 1] + str[i]
             }
         }
 
