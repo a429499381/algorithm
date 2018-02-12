@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>454 4Sum II</title>
+    <title>15 4Sum II</title>
     <!--给四个整型数组，寻找有多少个i，j, k , z 组合相加等于0， 数据规模0-500-->
 </head>
 <body>
@@ -25,23 +25,26 @@
         return false
     }
 
-    var Sum3 =function (arry) {
+    var Sum3 = function (arry) {
         var result = [], temp
         var findObj = {}
 
-        for (var i = 0; i < arry.length; i++) {
-            findObj[arry[i]] = i
-            for (var z = 0; z < arry.length; z++) {
-                findObj[arry[i] + arry[z]] = [i, z]
+        // 查找表
+        for (var i = 0; i < arry[0].length; i++) {
+            for (var z = 0; z < arry[1].length; z++) {
+                count++
+                findObj[arry[0][i] + arry[1][z]] = [i, z]
             }
         }
 
-        for (var j = 0; j < arry.length; j++) {
-            for (var k = j + 1; k < arry.length; k++) {
-                temp = 0 - arry[j] - arry[k]
+        for (var j = 0; j < arry[2].length; j++) {
+            for (var k = j; k < arry[3].length; k++) {
+                count++
+                temp = 0 - arry[2][j] - arry[3][k]
 
-                if (findObjBoolean(findObj, temp) && j !== findObj[temp] && k !== findObj[temp] ) {
-                    result.push([j, k, findObj[temp]])
+                // 检查是否在查找表中有值，有就保存四个小标
+                if (findObjBoolean(findObj, temp)) {
+                    result.push([findObj[temp][0], findObj[temp][1], j, k])
                 }
             }
         }
@@ -51,7 +54,12 @@
     }
 
 
-    var data = [-1,0,1,2,-1,-4]
+    var data = [
+        [1, 2, 3, 6, 7, 33, 2, 3, 12, 3, 4, 54, 8, 987, 9, 8, 7],
+        [3, 2, 5, 7, 87, 12, 3, 4, 55, 44, 33, 22, 11, 56, 12],
+        [-12, 34, -15, -16, 15, 2, 5, 8, 9, 35, -65, 98, -78],
+        [-54, 43, -34, 67, 45, 44, 76, 33, 34, -22, 14, -14]
+    ]
     var result = Sum3(data)
     console.log(count)
     console.log(result)
