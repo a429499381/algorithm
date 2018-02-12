@@ -1,23 +1,1 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>49 Group Anagrams</title>
-    <!--将字符串数组可以通过颠倒字符顺序产生相同结果的单词进行分组-->
-</head>
-<body>
-<script>
-    var count = 0
-        
-    var anagrams = function (str) {
-        
-    }
-
-    // ['ate', 'eat', 'tea'] , ['nat', 'tan']
-    var str = ['eat', 'tea', 'tan', 'ate', 'nat', 'bat']
-    var result = Sum3(data)
-    console.log(count)
-    console.log(result)
-</script>
-</body>
-</html>
+<!DOCTYPE html><html lang="en"><head>    <meta charset="UTF-8">    <title>49 Group Anagrams</title>    <!--将字符串数组可以通过颠倒字符顺序产生相同结果的单词进行分组--></head><body><script>    var count = 0    var anagrams = function (str) {        var result = [], curr = 0, next = 0  // 不初始化会导致结果NAN        for (var i = 0; i < str.length; i++) {            for (var j = i + 1; j < str.length; j++) {                for (var k = 0; k < str[j].length; k++) {                    // 将当前和下一个字符串转换为                    // Unicode 编码。这个返回值是 0 - 65535 之间的整数                    curr += str[i][k].charCodeAt()                    next += str[j][k].charCodeAt()                }                if (curr === next) { // 如果想等添加进结果                    result[i] =  [str[i], str[j]]                }                curr = 0                next = 0            }        }        return result    }    // ['ate', 'eat', 'tea'] , ['nat', 'tan']    var str = ['eat', 'tea', 'tan', 'ate', 'nat', 'bat']    var result = anagrams(str)    console.log(count)    console.log(result)</script></body></html>
